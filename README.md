@@ -1,7 +1,9 @@
-## Ringkasan Studi Kasus
-NusaCargo adalah perusahaan logistik yang mengelola pengiriman kontainer lintas pulau dari 6 pelabuhan utama. Sebelumnya, operasional perusahaan masih mengandalkan *spreadsheet* manual yang dikirim lewat surel, sehingga risiko keterlambatan baru diketahui berjam-jam setelah kejadian. 
+# NusaCargo Control Tower
 
-Proyek **Control Tower** ini dibangun sebagai solusi dasbor terpusat berbasis web untuk:
-- Menampilkan status pengiriman terkini secara *real-time*.
-- Menyoroti risiko keterlambatan pengiriman.
-- Memudahkan petugas lapangan dan dispatcher memperbarui status muatan secara terstruktur.
+Dashboard internal untuk memantau pengiriman logistik lintas pulau. Tim
+operasional NusaCargo saat ini masih memakai spreadsheet lewat surel,
+sehingga keterlambatan baru diketahui berjam-jam setelah kejadian. Proyek ini
+membangun pusat pemantauan yang menampilkan status pengiriman terkini,
+menyoroti risiko keterlambatan, dan memudahkan petugas memperbarui status
+langsung dari lapangan — dengan empat persona: dispatcher, manajer regional,
+petugas gudang, dan klien korporat yang melacak resi tanpa akun.

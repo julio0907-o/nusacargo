@@ -1,3 +1,6 @@
+// Modul 2 — varian tampilan dipetakan lewat Record<ShipmentStatus, string>
+// agar setiap status wajib punya gaya visual (TypeScript akan menegur bila ada yang lupa).
+
 import type { ShipmentStatus } from "@/types/shipment";
 
 const STYLES: Record<ShipmentStatus, string> = {
@@ -7,7 +10,7 @@ const STYLES: Record<ShipmentStatus, string> = {
   dikirim: "bg-amber-100 text-amber-900",
   selesai: "bg-emerald-100 text-emerald-800",
   tertunda: "bg-rose-100 text-rose-800",
-  dibatalkan: "bg-neutral-200 text-neutral-600 line-through", // <-- Tambahkan baris ini
+  dibatalkan: "bg-neutral-200 text-neutral-600 line-through",
 };
 
 export function StatusBadge({ status }: { status: ShipmentStatus }) {

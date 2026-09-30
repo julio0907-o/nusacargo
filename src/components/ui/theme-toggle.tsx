@@ -1,41 +1,35 @@
+// Modul 4 — tugas mandiri: pengalih mode gelap yang mengingat pilihan pengguna.
+// Catatan aksesibilitas (Modul 5/13) sudah disiapkan: aria-pressed & label jelas.
 "use client";
 
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Cek preferensi awal dari localStorage atau sistem
-    const storedTheme = localStorage.getItem("theme");
+    const stored = localStorage.getItem("nc-theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    
-    if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-    }
+    const dark = stored ? stored === "dark" : prefersDark;
+    setIsDark(dark);
+    document.documentElement.classList.toggle("dark", dark);
   }, []);
 
-  const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setIsDark(true);
-    }
-  };
+  function toggle() {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("nc-theme", next ? "dark" : "light");
+  }
 
   return (
     <button
-      onClick={toggleTheme}
-      aria-label="Ubah Mode Tampilan"
-      className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-foreground hover:bg-muted transition-colors"
+      type="button"
+      onClick={toggle}
+      aria-pressed={isDark}
+      className="rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
     >
-      {isDark ? <Sun className="h-5 w-5 text-amber-400" /> : <Moon className="h-5 w-5 text-slate-700" />}
+      {isDark ? "Mode terang" : "Mode gelap"}
     </button>
   );
 }

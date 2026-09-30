@@ -1,3 +1,6 @@
+// Placeholder untuk Modul 3–4. Tabel dengan filter/sorting/pagination
+// dibangun lengkap di Modul 10 setelah Server/Client Component (Modul 6)
+// dan pengambilan data (Modul 7) dibahas.
 import { getShipments } from "@/lib/mock-data";
 import { StatusBadge } from "@/components/ui/status-badge";
 

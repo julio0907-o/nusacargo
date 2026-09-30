@@ -1,3 +1,9 @@
+// Modul 2 — Fondasi TypeScript untuk komponen React
+// Status pengiriman dimodelkan sebagai union literal (bukan string bebas)
+// supaya penambahan status baru langsung memunculkan galat di tempat yang belum menanganinya.
+
+import type { Vehicle, Driver } from "@/types/vehicle";
+
 export const SHIPMENT_STATUS = [
   "dijemput",
   "transit",
@@ -5,29 +11,13 @@ export const SHIPMENT_STATUS = [
   "dikirim",
   "selesai",
   "tertunda",
-  "dibatalkan", 
+  "dibatalkan",
 ] as const;
 
 export type ShipmentStatus = (typeof SHIPMENT_STATUS)[number];
 
-// 1. Modelkan tipe Driver
-export interface Driver {
-  id: string;
-  name: string;
-  phone: string;
-}
-
-// 2. Modelkan tipe Vehicle (menggunakan union literal untuk jenis kendaraan)
-export type VehicleType = "truk" | "kapal" | "pesawat" | "kereta";
-
-export interface Vehicle {
-  id: string;
-  licensePlate: string;
-  type: VehicleType;
-}
-
 export interface Shipment {
-  awb: string; 
+  awb: string; // nomor resi, contoh: NC-2026-000481
   origin: string;
   destination: string;
   status: ShipmentStatus;
@@ -35,9 +25,10 @@ export interface Shipment {
   etaISO: string;
   delayedMinutes: number;
   client: { id: string; name: string };
-  // 3. Relasi opsional menggunakan tanda tanya (?)
-  driver?: Driver;
+  // Tugas mandiri Modul 2 (no. 1): relasi opsional — belum tentu setiap
+  // pengiriman sudah ditugaskan ke kendaraan/pengemudi (mis. saat masih "dijemput").
   vehicle?: Vehicle;
+  driver?: Driver;
 }
 
 export type ShipmentSummary = Pick<Shipment, "awb" | "status" | "etaISO">;

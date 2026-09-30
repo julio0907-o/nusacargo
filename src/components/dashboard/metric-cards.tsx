@@ -1,21 +1,22 @@
-export function MetricCards() {
-  const metrics = [
-    { title: "Total Pengiriman", value: "1,280", change: "+12% dari kemarin" },
-    { title: "Ketepatan Waktu", value: "94.2%", change: "Target: >90%" },
-    { title: "Jumlah Tertunda", value: "18", change: "Perlu perhatian segera" },
+// Modul 4 — tugas mandiri: tiga kartu metrik, grid runtuh jadi satu kolom di ponsel.
+type Props = { total: number; delayed: number; ontimeRate: number };
+
+export function MetricCards({ total, delayed, ontimeRate }: Props) {
+  const items = [
+    { label: "Total pengiriman", value: total },
+    { label: "Ketepatan waktu", value: `${ontimeRate}%` },
+    { label: "Jumlah tertunda", value: delayed },
   ];
 
   return (
-    // Menggunakan grid responsif: 1 kolom di ponsel (360px), 2 kolom di tablet (768px), 3/4 kolom di layar lebar (1440px)
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {metrics.map((item, index) => (
-        <div 
-          key={index}
-          className="rounded-xl border border-border bg-surface p-6 shadow-sm transition-all"
+    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      {items.map((item) => (
+        <div
+          key={item.label}
+          className="rounded-xl border border-border bg-surface p-4"
         >
-          <p className="text-sm font-medium text-muted-foreground">{item.title}</p>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-foreground">{item.value}</p>
-          <p className="mt-1 text-xs text-muted">{item.change}</p>
+          <p className="text-xs text-foreground/70">{item.label}</p>
+          <p className="mt-1 text-2xl font-semibold">{item.value}</p>
         </div>
       ))}
     </div>

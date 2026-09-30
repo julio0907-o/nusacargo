@@ -1,0 +1,10 @@
+{
+  "_comment": "Tempel bagian compilerOptions berikut ke tsconfig.json yang sudah ada (hasil create-next-app), lalu jalankan npm run typecheck.",
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true,
+    "exactOptionalPropertyTypes": true,
+    "paths": { "@/*": ["./src/*"] }
+  }
+}
